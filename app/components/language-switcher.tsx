@@ -1,22 +1,19 @@
 import { useTranslation } from "react-i18next";
-import { cn } from "../utils/cn";
 
 export function LanguageSwitcher() {
   const { i18n, t } = useTranslation();
+  const nextLanguage = i18n.language === "en" ? "es" : "en";
+  const nextLanguageLabel = nextLanguage === "en" ? "English" : "Español";
 
   return (
-    <div className="language-switcher" aria-label={t("language")}>
-      {(["es", "en"] as const).map((language) => (
-        <button
-          className={cn("language-switcher__button", i18n.language === language && "language-switcher__button--active")}
-          key={language}
-          type="button"
-          onClick={() => void i18n.changeLanguage(language)}
-          aria-pressed={i18n.language === language}
-        >
-          {language.toUpperCase()}
-        </button>
-      ))}
-    </div>
+    <button
+      className="language-switcher__button"
+      type="button"
+      onClick={() => void i18n.changeLanguage(nextLanguage)}
+      aria-label={`${t("language")}: ${nextLanguageLabel}`}
+      title={`${t("language")}: ${nextLanguageLabel}`}
+    >
+      {nextLanguageLabel}
+    </button>
   );
 }

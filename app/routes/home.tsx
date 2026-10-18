@@ -19,8 +19,10 @@ export default function Home() {
         <h1>{t("homeTitle")}</h1>
         <p className="hero__copy">{t("homeDescription")}</p>
       </section>
-      <section className="tools-section home-tools page-container" aria-labelledby="tools-title">
-        <div className="section-heading"><div><p className="section-kicker">{t("workspaceKicker")}</p><h2 id="tools-title">{t("availableTools")}</h2></div></div>
+      <section className="tools-section home-tools page-container" aria-label={t("workspaceKicker")}>
+        <div className="section-heading">
+          <p className="section-kicker">{t("workspaceKicker")}</p>
+        </div>
         <Link className="tool-card" to="/tools/wealth-calculator">
           <div className="tool-card__icon"><Icon name="calculator" size={24} /></div>
           <div className="tool-card__body"><h3>{t("simulatorTitle")}</h3><p>{t("simulatorDescription")}</p></div>

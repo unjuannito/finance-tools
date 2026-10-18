@@ -12,6 +12,7 @@ export function LanguageSwitcher() {
           key={language}
           type="button"
           onClick={() => void i18n.changeLanguage(language)}
+          aria-pressed={i18n.language === language}
         >
           {language.toUpperCase()}
         </button>

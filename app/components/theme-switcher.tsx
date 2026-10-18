@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useTheme, type ThemePreference } from "../contexts/theme-context";
+import { Icon } from "./icon";
 
 const options: ThemePreference[] = ["system", "light", "dark"];
 
@@ -19,7 +20,7 @@ export function ThemeSwitcher() {
           title={t(`theme${option[0].toUpperCase()}${option.slice(1)}`)}
           type="button"
         >
-          {option === "system" ? "◐" : option === "light" ? "☼" : "☾"}
+          <Icon name={option === "system" ? "system" : option === "light" ? "sun" : "moon"} size={16} />
           <span className="sr-only">{t(`theme${option[0].toUpperCase()}${option.slice(1)}`)}</span>
         </button>
       ))}

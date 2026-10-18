@@ -1,0 +1,10 @@
+services:
+  finance-tools:
+    build: .
+    container_name: finance-tools
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3042
+    ports:
+      - "127.0.0.1:3042:3042"

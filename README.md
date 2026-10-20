@@ -1,87 +1,85 @@
-# Welcome to React Router!
+# Finanzas claras
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Aplicación web para planificar y visualizar la evolución estimada del patrimonio mediante planes de ahorro e inversión. Permite combinar varios planes, definir cambios de aportaciones y rentabilidad por etapas y consultar una proyección conjunta.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+La aplicación está disponible en español e inglés e incluye temas claro, oscuro y del sistema. Los planes y la fecha final de simulación se guardan en el almacenamiento local del navegador.
 
-## Features
+## Funciones
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Crear, editar, duplicar y eliminar planes.
+- Clasificar cada plan como liquidez, renta fija, renta variable o mixto.
+- Definir una aportación inicial y etapas con fechas, aportación periódica, frecuencia (mensual, trimestral o anual) y rentabilidad anual esperada.
+- Consultar el capital final estimado, las aportaciones iniciales y periódicas, los rendimientos y el desglose por tipo de plan.
+- Explorar la evolución mensual en un gráfico, ajustar su intervalo y cambiar la fecha final de la proyección.
+- Usar la interfaz en español o inglés y elegir el tema visual.
 
-## Getting Started
+> Las cifras son proyecciones orientativas basadas en las aportaciones y rentabilidades que se introducen. No representan una garantía de resultados. Los retiros puntuales todavía no se aplican al cálculo.
 
-### Installation
+## Requisitos
 
-Install the dependencies:
+- Node.js 24 o posterior
+- npm
+
+## Desarrollo local
+
+Instala las dependencias e inicia el servidor de desarrollo:
 
 ```bash
 npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Vite mostrará la dirección local disponible (normalmente `http://localhost:5173`).
 
-## Building for Production
-
-Create a production build:
+## Compilación y ejecución
 
 ```bash
 npm run build
+npm run start
 ```
 
-## Deployment
+El servidor de producción escucha en el puerto `3042` por defecto. Puedes cambiarlo con las variables `HOST` y `PORT`.
 
-### Docker Deployment
-
-To build and run using Docker:
+Para comprobar los tipos de TypeScript:
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run typecheck
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## Docker Compose
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+El proyecto incluye `compose.yaml`, que construye y ejecuta la aplicación en el puerto local `3042`:
 
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+docker compose up --build -d
 ```
 
-## Styling
+Abre `http://localhost:3042`. Para detenerla:
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+```bash
+docker compose down
+```
 
----
+También puedes construir y ejecutar la imagen directamente:
 
-Built with ❤️ using React Router.
+```bash
+docker build -t finance-tools .
+docker run --rm -p 3042:3042 finance-tools
+```
+
+## Tecnologías
+
+- React 19 y TypeScript
+- React Router con renderizado en servidor
+- Vite y Tailwind CSS
+- i18next para traducciones
+
+## Estructura principal
+
+```text
+app/
+├── components/financial/  # Editor de planes, tarjetas y gráficos
+├── routes/                # Inicio y calculadora de patrimonio
+├── types/                 # Tipos de los planes y etapas
+└── utils/                 # Cálculos financieros y utilidades
+```
